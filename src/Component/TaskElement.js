@@ -3,9 +3,6 @@ import {connect} from 'react-redux';
 import * as actions  from './../actions/action';
 
 class TaskElement extends Component {
-     deleteData(id){
-        this.props.deleteData(id);
-     }
      updateData(id){
         this.props.updateData(id);
      }
@@ -34,7 +31,7 @@ class TaskElement extends Component {
                     &nbsp;
                     <button type="button" 
                             className="btn btn-danger"
-                            onClick={()=>this.deleteData(element.id)}>
+                            onClick={()=>this.props.onDeleteData(element.id)}>
                         <span className="fa fa-trash mr-5"></span>Xóa
                     </button>
                 </td>
@@ -53,7 +50,11 @@ function mapDispathToProps(dispatch, props){
   return {
     onUpdateStatus: (id)=>{
       dispatch(actions.updateStatus(id));
+    },
+    onDeleteData: (id)=>{
+      dispatch(actions.deleteTask(id));
     }
   }
+
 }
 export default connect(mapStateToProps, mapDispathToProps)(TaskElement);

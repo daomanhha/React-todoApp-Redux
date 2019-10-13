@@ -24,3 +24,9 @@ export function updateStatus(id){
 		id
 	}
 }
+export function deleteTask(id){
+	return {
+		type: types.deleteTask,
+		id
+	}
+}

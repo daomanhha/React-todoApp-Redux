@@ -30,6 +30,17 @@ export default (state = initialState , action )=>{
 			})
 			localStorage.setItem('task',JSON.stringify(newUpdateStatusState));
 			return newUpdateStatusState;
+		case types.deleteTask:
+			let newStateAfterDelete = [...state]; 
+			if(window.confirm('bạn có muốn xóa không')){
+				newStateAfterDelete = newStateAfterDelete.filter((ele)=>{
+					return ele.id !== action.id;
+				});
+				localStorage.setItem('task',JSON.stringify(newStateAfterDelete));
+				return newStateAfterDelete;
+			}
+			else return newStateAfterDelete;
+
 		default:
 		 	return state;
 	}
